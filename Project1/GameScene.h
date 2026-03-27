@@ -5,70 +5,25 @@
 class GameplayScene : public Scene {
 
 protected:
-    void CreateWalls() {
-        for (int i = 0; i < MAP_SIZE; i++) {
-            objects.push_back(new Wall(Vector2(i, 0), YELLOW, false));
-            objects.push_back(new Wall(Vector2(i, MAP_SIZE - 1), YELLOW, true));
+    void CreateWalls();
 
-            if (i > 0 && i < MAP_SIZE - 1) {
-                objects.push_back(new Wall(Vector2(0, i), YELLOW, false));
-                objects.push_back(new Wall(Vector2(MAP_SIZE - 1, i), YELLOW, false));
-            }
-        }
-    }
+    void CreateBricks();
 
-    void CreateBricks() {
-        for (int row = 1; row <= 3; row++) {
-            for (int col = 1; col < MAP_SIZE - 1; col++) {
-                objects.push_back(new Brick(Vector2(col, row), CYAN));
-            }
-        }
-    }
+    void CreatePlayer();
 
-    void CreatePlayer() {
-        objects.push_back(new Pad(Vector2(MAP_SIZE / 2, (MAP_SIZE * 3) / 4), WHITE, 1, MAP_SIZE));
-    }
-
-    void CreateBall() {
-        objects.push_back(new Ball(Vector2(2, MAP_SIZE / 2), WHITE, objects));
-    }
+    void CreateBall();
 
 public:
 
-    void Start() override {
-        CreateWalls();
-        CreateBricks();
-        CreatePlayer();
-        CreateBall();
-    }
+    void Start() override;
 
-    void Render() override {
-        system("cls");
-        ConsoleSetColor(WHITE, BLACK);
+    void Render() override;
 
-        for (int i = 0; i < objects.size(); i++) {
-            objects[i]->Render();
-        }
+    void Update() override;
 
-        ConsoleXY(MAP_SIZE, MAP_SIZE);
-    }
+    // Constructor
+    GameplayScene();
 
-    void Update() override {
-        bool isPlaying = true;
-
-        while (isPlaying) {
-            Sleep(100);
-
-            for (int i = 0; i < objects.size(); i++) {
-                objects[i]->Update();
-            }
-
-            Render();
-        }
-    }
-
-
-
-
-
+    // Destructor
+    ~GameplayScene();
 };
