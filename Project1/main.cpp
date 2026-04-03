@@ -34,14 +34,7 @@ int main() {
         AllSecenes[index]->Update();
 
         index = AllSecenes[index]->ChangeScene();
-
     }
-
-
-    //  std::vector<GameObject*> objects;
-    //  
-    //  Start(objects);
-    //  Update(objects);
 
     return 0;
 }

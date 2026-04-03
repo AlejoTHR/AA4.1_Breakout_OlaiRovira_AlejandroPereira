@@ -2,6 +2,8 @@
 #include "Scene.h"
 #include "MenuScene.h"
 
+#define FRAME_TIME 150
+
 class GameplayScene : public Scene {
 
 protected:

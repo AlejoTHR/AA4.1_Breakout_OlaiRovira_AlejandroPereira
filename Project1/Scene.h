@@ -1,10 +1,11 @@
 #pragma once
 #include <vector>
 #include "GameObject.h"
+#include "InputManager.h"
 
 class Scene {
 public:
-	enum SceneIndex { MENU, GAMEPLAY, RANKING };
+	enum SceneIndex { MENU, GAMEPLAY, RANKING, CREDITS, EXIT };
 
 protected:
 	std::vector<GameObject*> objects;
