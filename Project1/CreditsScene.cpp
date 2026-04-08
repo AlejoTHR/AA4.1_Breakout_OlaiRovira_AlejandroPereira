@@ -9,25 +9,25 @@ void CreditsScene::Start() {
 
 void CreditsScene::Render() {
 	system("cls");
+	cout << "\t ::CREDITS::" << endl << endl <<
+		" - ALEJANDRO PEREIRA -" << endl <<
+		" - OLAI ROVIRA -" << endl << endl <<
+		"Press Space to continue..." << endl;
 }
 
 void CreditsScene::Update() {
-	bool exit = false;
-	while (!exit) {
-		Sleep(MENU_FRAME_TIME);
-		for (int i = 0; i < objects.size(); i++) {
-			objects[i]->Update();
-		}
-
-		Render();
+	Sleep(MENU_FRAME_TIME);
+	for (int i = 0; i < objects.size(); i++) {
+		objects[i]->Update();
 	}
 
-	//nextScene = options[selectedOption].second;
+	Render();
+	WaitForSpaceToContinue();
 }
 
 // Constructor
 CreditsScene::CreditsScene() {
-
+	nextScene = Scene::MENU;
 }
 
 // Destructor
