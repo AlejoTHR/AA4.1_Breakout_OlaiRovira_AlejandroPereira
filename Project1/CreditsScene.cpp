@@ -16,11 +16,9 @@ void CreditsScene::Render() {
 }
 
 void CreditsScene::Update() {
-	Sleep(MENU_FRAME_TIME);
 	for (int i = 0; i < objects.size(); i++) {
 		objects[i]->Update();
 	}
-
 	Render();
 	WaitForSpaceToContinue();
 }

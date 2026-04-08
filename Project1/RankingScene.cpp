@@ -9,27 +9,23 @@ void RankingScene::Start() {
 
 void RankingScene::Render() {
 	system("cls");
-	cout << endl << menuText << endl << endl;
-	cout << "hacer sistema de lectura de binario";
-
+	cout << endl << menuText << endl << endl <<
+		"hacer sistema de lectura de binario" << endl << endl <<
+		"Press Space to continue..." << endl;
 }
 
 void RankingScene::Update() {
-	bool exit = false;
-	while (!exit) {
-		Sleep(MENU_FRAME_TIME);
-		for (int i = 0; i < objects.size(); i++) {
-			objects[i]->Update();
-		}
-		Render();
+	for (int i = 0; i < objects.size(); i++) {
+		objects[i]->Update();
 	}
-
-	//nextScene = options[selectedOption].second;
+	Render();
+	WaitForSpaceToContinue();
 }
 
 // Constructor
 RankingScene::RankingScene() {
 	menuText = "\t ::RANKINGS::";
+	nextScene = Scene::MENU;
 }
 
 // Destructor
