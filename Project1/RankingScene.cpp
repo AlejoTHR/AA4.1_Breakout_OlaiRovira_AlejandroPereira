@@ -9,6 +9,9 @@ void RankingScene::Start() {
 
 void RankingScene::Render() {
 	system("cls");
+	cout << endl << menuText << endl << endl;
+	cout << "hacer sistema de lectura de binario";
+
 }
 
 void RankingScene::Update() {
@@ -18,7 +21,6 @@ void RankingScene::Update() {
 		for (int i = 0; i < objects.size(); i++) {
 			objects[i]->Update();
 		}
-
 		Render();
 	}
 
@@ -27,7 +29,7 @@ void RankingScene::Update() {
 
 // Constructor
 RankingScene::RankingScene() {
-	
+	menuText = "\t ::RANKINGS::";
 }
 
 // Destructor

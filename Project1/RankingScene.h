@@ -8,7 +8,10 @@ using namespace std;
 class RankingScene : public Scene
 {
 private:
-	
+
+protected:
+	string menuText;
+
 public:
 	void Start() override;
 
