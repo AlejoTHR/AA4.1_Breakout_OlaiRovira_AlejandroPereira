@@ -65,6 +65,11 @@ void Ball::Update() {
 
         if (IsCollidingWith(currentObject)) {
             Bounce(currentObject);
+            // https://stackoverflow.com/questions/351845/finding-the-type-of-an-object-in-c
+            Brick* touchedBrick = dynamic_cast<Brick*>(currentObject);
+            if (touchedBrick != NULL) {
+                touchedBrick->Destroy();
+            }
             break;
         }
     }

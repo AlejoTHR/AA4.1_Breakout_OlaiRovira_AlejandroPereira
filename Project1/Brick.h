@@ -11,8 +11,6 @@ public:
 	inline void Destroy() { destroyed = true; }
 
 	void Render() override {
-		if (!destroyed) {
-			GameObject::Render();
-		}
+		GameObject::Render();
 	}
 };

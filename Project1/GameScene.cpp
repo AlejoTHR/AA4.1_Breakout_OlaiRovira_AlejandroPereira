@@ -49,6 +49,11 @@ void GameplayScene::Render() {
     ConsoleSetColor(WHITE, BLACK);
 
     for (int i = 0; i < objects.size(); i++) {
+        Brick* touchedBrick = dynamic_cast<Brick*>(objects[i]);
+        if (touchedBrick != NULL && touchedBrick->GetDestroyed()) {
+			objects.erase(objects.begin() + i);
+            i--;
+        }
         objects[i]->Render();
     }
 
