@@ -49,13 +49,13 @@ void MenuScene::Update() {
 		Render();
 	}
 
-	nextScene = SceneIndex::GAMEPLAY;
+	nextScene = options[selectedOption].second;
 }
 
 // Constructor
 MenuScene::MenuScene() {
 	options = { {"PLAY", GAMEPLAY}, {"RANKING", RANKING}, {"CREDITS", CREDITS}, {"EXIT", EXIT}};
-	menuText = "   ARKANOID";
+	menuText = "   BREAKOUT";
 	extraText = "  Move with W & S, select with SPACE.";
 }
 

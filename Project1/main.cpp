@@ -13,6 +13,7 @@
 #include "Scene.h"
 #include "MenuScene.h"
 #include "GameScene.h"
+#include "RankingScene.h"
 
 #define MAP_SIZE 15
 
@@ -23,6 +24,7 @@ int main() {
     Scene* AllSecenes[3];
 
     AllSecenes[Scene::MENU] = new MenuScene;
+    AllSecenes[Scene::RANKING] = new RankingScene;
     AllSecenes[Scene::GAMEPLAY] = new GameplayScene;
 
     Scene::SceneIndex index = Scene::MENU;
@@ -34,6 +36,7 @@ int main() {
         AllSecenes[index]->Update();
 
         index = AllSecenes[index]->ChangeScene();
+        cout << index << endl;
     }
 
     return 0;
