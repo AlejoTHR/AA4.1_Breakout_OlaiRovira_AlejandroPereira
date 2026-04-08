@@ -34,16 +34,22 @@ void Ball::Bounce(GameObject* other) {
     if (!bounceHorizontal && !bounceVertical) {
         direction.x = -direction.x;
         direction.y = -direction.y;
+        std::cout << "NV NH";
         return;
     }
 
     if (bounceVertical) {
         direction.y = -direction.y;
+        std::cout << "V";
+
     }
 
     if (bounceHorizontal) {
+        std::cout << "H";
+
         direction.x = -direction.x;
     }
+
 }
 
 void Ball::Update() {
