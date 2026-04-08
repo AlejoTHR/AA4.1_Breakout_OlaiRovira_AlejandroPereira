@@ -1,10 +1,5 @@
 #include "Ball.h"
 
-bool Ball::IsCollidingWith(GameObject* other) {
-    Vector2 checkedPos = position;
-    return checkedPos == other->GetPosition();
-}
-
 bool Ball::HasObjectAtPosition(int x, int y) {
     Vector2 targetPosition(x, y);
 
@@ -24,6 +19,35 @@ bool Ball::HasObjectAtPosition(int x, int y) {
 void Ball::Bounce(GameObject* other) {
     Vector2 otherPosition = other->GetPosition();
 
+    // It's possible that it's touching a side of the pad,
+    // and in that case, the bounce will be different;
+    Pad* pad = dynamic_cast<Pad*>(other);
+    if (pad != NULL) {
+        // We check both sides of the pad and if we're there,
+        // we apply the proper bounce:
+        if (position == pad->GetPosition() + Vector2(-1, 0)) {
+            direction = Vector2(-1, -1);
+            return;
+        }
+        else if (position == pad->GetPosition() + Vector2(1, 0)) {
+            direction = Vector2(1, -1);
+            return;
+        }
+    }
+
+    bool obstacleInX = position + Vector2(0, direction.y) == other->GetPosition();
+    bool obstacleInY = position + Vector2(direction.x, 0) == other->GetPosition();
+    if (obstacleInX) {
+        direction.y *= -1;
+    }
+    if (obstacleInY) {
+        direction.x *= -1;
+    }
+    if (!obstacleInX && !obstacleInY && position + direction == other->GetPosition()) {
+        direction *= -1;
+    }
+
+    /*
     bool hasObjectAbove = HasObjectAtPosition(otherPosition.x, otherPosition.y - 1);
     bool hasObjectBelow = HasObjectAtPosition(otherPosition.x, otherPosition.y + 1);
     bool hasObjectLeft = HasObjectAtPosition(otherPosition.x - 1, otherPosition.y);
@@ -57,7 +81,7 @@ void Ball::Bounce(GameObject* other) {
 
         direction.x = -direction.x;
         std::cout << bounceHorizontal << "|" << bounceVertical;
-    }
+    }*/
 }
 
 void Ball::Update() {
@@ -71,30 +95,6 @@ void Ball::Update() {
             continue;
         }
 
-        // It's possible that it's touching a side of the pad, and in
-        // that case, the bounce will be different;
-        Pad* pad = dynamic_cast<Pad*>(currentObject);
-        if (pad != NULL) {
-            // We check both sides of the pad and if we're there,
-            // we apply the proper bounce:
-            if (position == pad->GetPosition() + Vector2(-1, 0)) {
-                direction = Vector2(-1, -1);
-                break;
-            }
-            else if (position == pad->GetPosition() + Vector2(1, 0)) {
-                direction = Vector2(1, -1);
-                break;
-            }
-        }
-        
-        if (IsCollidingWith(currentObject)) {
-            Bounce(currentObject);
-            // https://stackoverflow.com/questions/351845/finding-the-type-of-an-object-in-c
-            Brick* touchedBrick = dynamic_cast<Brick*>(currentObject);
-            if (touchedBrick != NULL) {
-                touchedBrick->Destroy();
-            }
-            break;
-        }
+        Bounce(currentObject);
     }
 }

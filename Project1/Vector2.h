@@ -15,6 +15,10 @@ public:
 		return Vector2(x + other.x, y + other.y);
 	}
 
+	inline Vector2 operator*=(const int& other) {
+		return Vector2(x * other, y * other);
+	}
+
 	inline bool operator==(const Vector2& other) {
 		return x == other.x && y == other.y;
 	}
