@@ -54,6 +54,9 @@
     <ClCompile Include="InputManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CreditsScene.cpp">
+      <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameObject.h">
@@ -94,6 +97,9 @@
     </ClInclude>
     <ClInclude Include="InputManager.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CreditsScene.h">
+      <Filter>Header Files\Scenes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -14,6 +14,7 @@
 #include "MenuScene.h"
 #include "GameScene.h"
 #include "RankingScene.h"
+#include "CreditsScene.h"
 
 #define MAP_SIZE 15
 
@@ -21,11 +22,12 @@
 int main() {
     srand((unsigned int)time(NULL));
     
-    Scene* AllSecenes[3];
+    Scene* AllSecenes[SCENES_NUM];
 
     AllSecenes[Scene::MENU] = new MenuScene;
-    AllSecenes[Scene::RANKING] = new RankingScene;
     AllSecenes[Scene::GAMEPLAY] = new GameplayScene;
+    AllSecenes[Scene::RANKING] = new RankingScene;
+    AllSecenes[Scene::CREDITS] = new CreditsScene;
 
     Scene::SceneIndex index = Scene::MENU;
 
@@ -36,8 +38,9 @@ int main() {
         AllSecenes[index]->Update();
 
         index = AllSecenes[index]->ChangeScene();
-        cout << index << endl;
+        if (index == Scene::EXIT) isExitTime = true;
     }
 
+    cout << "Goodbye!" << endl;
     return 0;
 }
