@@ -12,6 +12,7 @@ private:
     Vector2 direction;
     std::vector<GameObject*>* objects;
     
+    void CheckBottomTouched();
     void BreakIfBrick(GameObject* obj);
     void Bounce(GameObject* other);
 
@@ -19,7 +20,7 @@ public:
 
     Ball(Vector2 newPosition, ConsoleColor newColor, std::vector<GameObject*>& gameObjects)
         : GameObject(newPosition, '@', newColor) {
-        direction = Vector2(1, 1);
+        direction = Vector2(0, 1);
         objects = &gameObjects;
     }
 

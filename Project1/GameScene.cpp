@@ -28,11 +28,11 @@ void GameplayScene::CreateBricks(){
 }
 
 void GameplayScene::CreatePlayer() {
-    objects.push_back(new Pad(Vector2(MAP_SIZE / 2, (MAP_SIZE * 3) / 4), WHITE, 1, MAP_SIZE));
+    objects.push_back(new Pad(playerSpawnPos, WHITE, 1, MAP_SIZE));
 }
 
 void GameplayScene::CreateBall() {
-    objects.push_back(new Ball(Vector2(2, MAP_SIZE / 2), WHITE, objects));
+    objects.push_back(new Ball(playerSpawnPos + Vector2(0, -5), WHITE, objects));
 }
 
 // Public Methods
@@ -75,7 +75,7 @@ void GameplayScene::Update() {
 
 // Constructor
 GameplayScene::GameplayScene() {
-
+    playerSpawnPos = Vector2(MAP_SIZE / 2, (MAP_SIZE * 3) / 4);
 }
 
 // Destructor

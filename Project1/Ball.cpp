@@ -1,11 +1,16 @@
 #include "Ball.h"
 #include "InputManager.h"
 
+void Ball::CheckBottomTouched() {
+    if (position.y < MAP_SIZE - 2) return;
+    std::cout << "\n`tlk`y+tk6+'k7k+m.ñhyulk.";
+    WaitForSpaceToContinue();
+}
+
 void Ball::BreakIfBrick(GameObject* obj) {
     Brick* brick = dynamic_cast<Brick*>(obj);
     if (brick == NULL) return;
     brick->Destroy();
-
 }
 
 void Ball::Bounce(GameObject* other) {
@@ -51,26 +56,12 @@ void Ball::Bounce(GameObject* other) {
     }
 
     if (bounced) {
-        if (otherPosition.y >= MAP_SIZE-1)
-        {
-            ///////////////////////////////
-            
-            //INSERTE FUNCIÓN PARA DERROTA
-            
-            ///////////////////////////////
-
-            std::cout << "DEFEAT";
-            WaitForSpaceToContinue();
-        }
-   
         BreakIfBrick(other);
     }
-
 }
 
 void Ball::Update() {
-    position.x = position.x + direction.x;
-    position.y = position.y + direction.y;
+    position = position + direction;
 
     for (int i = 0; i < objects->size(); i++) {
         GameObject* currentObject = (*objects)[i];
@@ -81,4 +72,6 @@ void Ball::Update() {
 
         Bounce(currentObject);
     }
+
+    CheckBottomTouched();
 }

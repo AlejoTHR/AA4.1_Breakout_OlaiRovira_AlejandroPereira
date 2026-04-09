@@ -5,6 +5,8 @@
 #define FRAME_TIME 150
 
 class GameplayScene : public Scene {
+private:
+    Vector2 playerSpawnPos;
 
 protected:
     void CreateWalls();
