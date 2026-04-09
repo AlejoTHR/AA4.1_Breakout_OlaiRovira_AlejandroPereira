@@ -10,9 +10,8 @@ class Ball : public GameObject {
 private:
     Vector2 direction;
     std::vector<GameObject*>* objects;
-
-    bool IsCollidingWith(GameObject* other);
-    bool HasObjectAtPosition(int x, int y);
+    
+    void BreakIfBrick(GameObject* obj);
     void Bounce(GameObject* other);
 
 public:
