@@ -19,8 +19,11 @@ bool Ball::HasObjectAtPosition(int x, int y) {
 void Ball::Bounce(GameObject* other) {
     Vector2 otherPosition = other->GetPosition();
 
+    bool obstacleInX = position + Vector2(direction.x, 0) == other->GetPosition();
+    bool obstacleInY = position + Vector2(0, direction.y) == other->GetPosition();
+
     // It's possible that it's touching a side of the pad,
-    // and in that case, the bounce will be different;
+    // and in that case, the bounce will be different:
     Pad* pad = dynamic_cast<Pad*>(other);
     if (pad != NULL) {
         // We check both sides of the pad and if we're there,
@@ -35,13 +38,11 @@ void Ball::Bounce(GameObject* other) {
         }
     }
 
-    bool obstacleInX = position + Vector2(0, direction.y) == other->GetPosition();
-    bool obstacleInY = position + Vector2(direction.x, 0) == other->GetPosition();
     if (obstacleInX) {
-        direction.y *= -1;
+        direction.x *= -1;
     }
     if (obstacleInY) {
-        direction.x *= -1;
+        direction.y *= -1;
     }
     if (!obstacleInX && !obstacleInY && position + direction == other->GetPosition()) {
         direction *= -1;
