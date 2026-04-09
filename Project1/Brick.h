@@ -4,6 +4,8 @@
 class Brick : public GameObject {
 protected:
 	bool destroyed;
+
+	unsigned short points = 100;
 public:
 	Brick(Vector2 _pos, ConsoleColor c)
 		: GameObject(_pos, '=', c), destroyed(false) {}
@@ -12,5 +14,9 @@ public:
 
 	void Render() override {
 		GameObject::Render();
+	}
+
+	unsigned short GetPoints() {
+		return points;
 	}
 };

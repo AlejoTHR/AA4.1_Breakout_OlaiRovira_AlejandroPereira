@@ -1,9 +1,11 @@
 #include "Ball.h"
+#include "InputManager.h"
 
 void Ball::BreakIfBrick(GameObject* obj) {
     Brick* brick = dynamic_cast<Brick*>(obj);
     if (brick == NULL) return;
     brick->Destroy();
+
 }
 
 void Ball::Bounce(GameObject* other) {
@@ -58,6 +60,7 @@ void Ball::Bounce(GameObject* other) {
             ///////////////////////////////
 
             std::cout << "DEFEAT";
+            WaitForSpaceToContinue();
         }
    
         BreakIfBrick(other);
