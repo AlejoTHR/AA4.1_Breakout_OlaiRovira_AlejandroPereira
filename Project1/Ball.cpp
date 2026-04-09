@@ -50,6 +50,7 @@ void Ball::Bounce(GameObject* other) {
 
     if (bounced) {
         BreakIfBrick(other);
+        if (otherPosition.y == 14) std::cout << "DEFEAT";
     }
 }
 
