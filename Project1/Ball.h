@@ -3,6 +3,7 @@
 #include "Wall.h"
 #include "Brick.h"
 #include "Pad.h"
+#include "Cons.h"
 
 #include <vector>
 
@@ -15,6 +16,7 @@ private:
     void Bounce(GameObject* other);
 
 public:
+
     Ball(Vector2 newPosition, ConsoleColor newColor, std::vector<GameObject*>& gameObjects)
         : GameObject(newPosition, '@', newColor) {
         direction = Vector2(1, 1);

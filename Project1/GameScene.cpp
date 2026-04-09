@@ -69,7 +69,6 @@ void GameplayScene::Update() {
         for (int i = 0; i < objects.size(); i++) {
             objects[i]->Update();
         }
-
         Render();
     }
 }

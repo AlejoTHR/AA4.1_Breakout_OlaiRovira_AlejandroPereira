@@ -49,9 +49,20 @@ void Ball::Bounce(GameObject* other) {
     }
 
     if (bounced) {
+        if (otherPosition.y >= MAP_SIZE-1)
+        {
+            ///////////////////////////////
+            
+            //INSERTE FUNCIÓN PARA DERROTA
+            
+            ///////////////////////////////
+
+            std::cout << "DEFEAT";
+        }
+   
         BreakIfBrick(other);
-        if (otherPosition.y == 14) std::cout << "DEFEAT";
     }
+
 }
 
 void Ball::Update() {
