@@ -7,20 +7,18 @@ void Ball::CheckBottomTouched() {
     WaitForSpaceToContinue();
 }
 
-void Ball::BreakIfBrick(GameObject* obj) {
+bool Ball::BreakIfBrick(GameObject* obj) {
     Brick* brick = dynamic_cast<Brick*>(obj);
-    if (brick == NULL) return;
-    brick->Destroy();
+    if (brick == NULL) return false;
+    brick->Destroy(brickCombo);
+    brickCombo++;
+    return true;
 }
 
-void Ball::Bounce(GameObject* other) {
+void Ball::Bounce(GameObject* other, bool brickDestroyed) {
     Vector2 otherPosition = other->GetPosition();
+    bool bounced = false;
 
-    bool obstacleInX = position + Vector2(direction.x, 0) == otherPosition;
-    bool obstacleInY = position + Vector2(0, direction.y) == otherPosition;
-
-    bool bounceLeft = false;
-	bool bounceRight = false;
     // It's possible that it's touching a side of the pad,
     // and in that case, the bounce will be different:
     Pad* pad = dynamic_cast<Pad*>(other);
@@ -31,17 +29,19 @@ void Ball::Bounce(GameObject* other) {
             position + Vector2(0, direction.y) == otherPosition + Vector2(-1, 0) ||
             position + direction == otherPosition + Vector2(-1, 0)) {
             direction = Vector2(-1, -1);
-            return;
+            bounced = true;
         }
         else if (position + Vector2(direction.x, 0) == otherPosition + Vector2(1, 0) ||
             position + Vector2(0, direction.y) == otherPosition + Vector2(1, 0) ||
             position + direction == otherPosition + Vector2(1, 0)) {
             direction = Vector2(1, -1);
-            return;
+            bounced = true;
         }
     }
 
-	bool bounced = false;
+    bool obstacleInX = position + Vector2(direction.x, 0) == otherPosition;
+    bool obstacleInY = position + Vector2(0, direction.y) == otherPosition;
+
     if (obstacleInX) {
         direction.x *= -1;
         bounced = true;
@@ -56,13 +56,17 @@ void Ball::Bounce(GameObject* other) {
     }
 
     if (bounced) {
-        BreakIfBrick(other);
+        // If it bounced, and the checked object is a Pad, it means
+        // It bounced on the pad, so we reset the combo:
+        if (pad != NULL) brickCombo = 0;
+        // If it's not the pad and we haven't destroyed a brick this frame:
+        else if (!brickDestroyed) brickDestroyed = BreakIfBrick(other);
     }
 }
 
 void Ball::Update() {
     position = position + direction;
-
+    bool brickDestroyed = false;
     for (int i = 0; i < objects->size(); i++) {
         GameObject* currentObject = (*objects)[i];
 
@@ -70,7 +74,7 @@ void Ball::Update() {
             continue;
         }
 
-        Bounce(currentObject);
+        Bounce(currentObject, brickDestroyed);
     }
 
     CheckBottomTouched();

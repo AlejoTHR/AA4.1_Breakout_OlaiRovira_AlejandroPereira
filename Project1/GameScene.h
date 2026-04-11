@@ -1,12 +1,14 @@
 #pragma once
 #include "Scene.h"
 #include "MenuScene.h"
+#include "GameManager.h"
 
 #define FRAME_TIME 150
 
 class GameplayScene : public Scene {
 private:
     Vector2 playerSpawnPos;
+    GameManager gameManager;
 
 protected:
     void CreateWalls();
@@ -18,7 +20,6 @@ protected:
     void CreateBall();
 
 public:
-
     void Start() override;
 
     void Render() override;

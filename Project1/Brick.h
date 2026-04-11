@@ -1,22 +1,17 @@
 #pragma once
 #include "GameObject.h"
+#include "GameManager.h"
 
 class Brick : public GameObject {
 protected:
 	bool destroyed;
+	GameManager* gameManager;
 
-	unsigned short points = 100;
 public:
-	Brick(Vector2 _pos, ConsoleColor c)
-		: GameObject(_pos, '=', c), destroyed(false) {}
-	inline bool GetDestroyed() const { return destroyed; }
-	inline void Destroy() { destroyed = true; }
+	bool GetDestroyed() const;
+	void Destroy(unsigned short combo);
 
-	void Render() override {
-		GameObject::Render();
-	}
+	void Render() override;
 
-	unsigned short GetPoints() {
-		return points;
-	}
+	Brick(Vector2 _pos, ConsoleColor c, GameManager* gm);
 };

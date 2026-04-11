@@ -23,10 +23,10 @@ void Pad::Render() {
     GameObject::Render();
 
     for (int i = 1; i <= width; i++) {
-        ConsoleXY(position.x + i, position.y);
+        ConsoleXY(position.x + i, position.y + GAME_WINDOW_Y_OFFSET);
         std::cout << charToPrint;
 
-        ConsoleXY(position.x - i, position.y);
+        ConsoleXY(position.x - i, position.y + GAME_WINDOW_Y_OFFSET);
         std::cout << charToPrint;
     }
 }

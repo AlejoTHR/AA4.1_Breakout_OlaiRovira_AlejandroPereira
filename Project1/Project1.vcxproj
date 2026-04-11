@@ -128,8 +128,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Ball.cpp" />
+    <ClCompile Include="Brick.cpp" />
     <ClCompile Include="ConsoleControl.cpp" />
     <ClCompile Include="CreditsScene.cpp" />
+    <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="InputManager.cpp" />
@@ -144,6 +146,7 @@
     <ClInclude Include="Cons.h" />
     <ClInclude Include="ConsoleControl.h" />
     <ClInclude Include="CreditsScene.h" />
+    <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="MenuScene.h" />

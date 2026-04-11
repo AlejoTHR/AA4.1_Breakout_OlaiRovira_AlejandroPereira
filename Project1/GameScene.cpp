@@ -22,7 +22,7 @@ void GameplayScene::CreateWalls(){
 void GameplayScene::CreateBricks(){
     for (int row = 1; row <= 3; row++) {
         for (int col = 1; col < MAP_SIZE - 1; col++) {
-            objects.push_back(new Brick(Vector2(col, row), CYAN));
+            objects.push_back(new Brick(Vector2(col, row), CYAN, &gameManager));
         }
     }
 }
@@ -36,7 +36,6 @@ void GameplayScene::CreateBall() {
 }
 
 // Public Methods
-
 void GameplayScene::Start() {
     GameplayScene::CreateWalls();
     GameplayScene::CreateBricks();
@@ -47,6 +46,9 @@ void GameplayScene::Start() {
 void GameplayScene::Render() {
     system("cls");
     ConsoleSetColor(WHITE, BLACK);
+    ConsoleXY(0, 0);
+    cout << "LIFES: " << gameManager.GetLifes() << endl;
+    cout << "POINTS: " << gameManager.GetPoints() << endl;
 
     for (int i = 0; i < objects.size(); i++) {
         Brick* touchedBrick = dynamic_cast<Brick*>(objects[i]);

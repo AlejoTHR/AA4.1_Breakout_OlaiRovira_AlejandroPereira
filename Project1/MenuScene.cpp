@@ -30,6 +30,7 @@ void MenuScene::Update() {
 	bool exit = false;
 	while (!exit) {
 		Sleep(MENU_FRAME_TIME);
+
 		for (int i = 0; i < objects.size(); i++) {
 			objects[i]->Update();		
 		}actualFrame++;
