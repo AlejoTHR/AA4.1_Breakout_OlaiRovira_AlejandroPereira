@@ -60,7 +60,7 @@ void Ball::Bounce(GameObject* other, bool brickDestroyed) {
         // It bounced on the pad, so we reset the combo:
         if (pad != NULL) brickCombo = 0;
         // If it's not the pad and we haven't destroyed a brick this frame:
-        else if (!brickDestroyed) brickDestroyed = BreakIfBrick(other);
+        else if (!brickDestroyed) if (BreakIfBrick(other)) brickDestroyed = true;
     }
 }
 
