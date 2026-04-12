@@ -32,7 +32,7 @@ void GameplayScene::CreatePlayer() {
 }
 
 void GameplayScene::CreateBall() {
-    objects.push_back(new Ball(playerSpawnPos + Vector2(0, -5), WHITE, objects));
+    objects.push_back(new Ball(playerSpawnPos + Vector2(0, -5), WHITE, objects, &gameManager));
 }
 
 // Public Methods

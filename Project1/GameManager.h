@@ -6,9 +6,10 @@ private:
 	unsigned short lifes;
 
 public:
+	unsigned int GetPoints();
 	void AddPoints(int pointsToAdd);
 	unsigned short GetLifes();
-	unsigned int GetPoints();
+	void LoseLife();
 	GameManager();
 	~GameManager();
 };

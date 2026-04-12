@@ -1,5 +1,10 @@
 #include "GameManager.h"
 #include "Cons.h"
+#include <iostream>
+
+unsigned int GameManager::GetPoints() {
+	return points;
+}
 
 void GameManager::AddPoints(int pointsToAdd) {
 	points += pointsToAdd;
@@ -9,8 +14,8 @@ unsigned short GameManager::GetLifes() {
 	return lifes;
 }
 
-unsigned int GameManager::GetPoints() {
-	return points;
+void GameManager::LoseLife() {
+	lifes--;
 }
 
 GameManager::GameManager()
