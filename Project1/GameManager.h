@@ -3,13 +3,15 @@ class GameManager
 {
 private:
 	unsigned int points;
-	unsigned short lifes;
+	short lifes;
+	bool lost;
 
 public:
 	unsigned int GetPoints();
 	void AddPoints(int pointsToAdd);
-	unsigned short GetLifes();
+	short GetLifes();
 	void LoseLife();
+	bool GameLost();
 	GameManager();
 	~GameManager();
 };

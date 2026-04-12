@@ -10,18 +10,24 @@ void GameManager::AddPoints(int pointsToAdd) {
 	points += pointsToAdd;
 }
 
-unsigned short GameManager::GetLifes() {
+short GameManager::GetLifes() {
 	return lifes;
 }
 
 void GameManager::LoseLife() {
 	lifes--;
+	lost = lifes <= 0;
+}
+
+bool GameManager::GameLost() {
+	return lost;
 }
 
 GameManager::GameManager()
 {
 	points = 0;
 	lifes = INITIAL_LIFES;
+	lost = false;
 }
 
 GameManager::~GameManager()

@@ -72,6 +72,14 @@ void GameplayScene::Update() {
             objects[i]->Update();
         }
         Render();
+
+        // Work In Progress
+        if (gameManager.GameLost()) {
+            cout << "\nYOU LOOOOOOSE!\n";
+            // El juego se para todo el rato por esto:
+            // Es solo para testear:
+            WaitForSpaceToContinue();
+        }
     }
 }
 
