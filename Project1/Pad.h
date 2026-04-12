@@ -8,15 +8,9 @@ private:
     int mapSize;
 
 public:
-    Pad(Vector2 newPosition, ConsoleColor newColor, int newWidth, int newMapSize)
-        : GameObject(newPosition, '_', newColor) {
-        width = newWidth;
-        mapSize = newMapSize;
-    }
+    Pad(Vector2 newPosition, ConsoleColor newColor, int newWidth, int newMapSize);
 
-    int GetWidth() const {
-        return width;
-    }
+    int GetWidth() const;
 
     void Update() override;
     void Render() override;

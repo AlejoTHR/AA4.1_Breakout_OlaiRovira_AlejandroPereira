@@ -1,5 +1,9 @@
 #include "Pad.h"
 
+int Pad::GetWidth() const {
+    return width;
+}
+
 void Pad::Update() {
     bool moveLeft = GetAsyncKeyState('A') != 0;
     bool moveRight = GetAsyncKeyState('D') != 0;
@@ -29,4 +33,12 @@ void Pad::Render() {
         ConsoleXY(position.x - i, position.y + GAME_WINDOW_Y_OFFSET);
         std::cout << charToPrint;
     }
+}
+
+// Constructor
+
+Pad::Pad(Vector2 newPosition, ConsoleColor newColor, int newWidth, int newMapSize)
+    : GameObject(newPosition, '-', newColor) {
+    width = newWidth;
+    mapSize = newMapSize;
 }

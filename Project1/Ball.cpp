@@ -4,6 +4,19 @@
 void Ball::CheckBottomTouched() {
     if (position.y < MAP_SIZE - 2) return;
     gameManager->LoseLife();
+    ResetPosition();
+}
+
+void Ball::CheckOutOfBounds() {
+    if (position.y > 0 &&
+        position.x > 0 &&
+        position.x < MAP_SIZE - 1) return;
+    ResetPosition();
+}
+
+void Ball::ResetPosition() {
+    position = startPos;
+    direction = Vector2(0, 1);
 }
 
 bool Ball::BreakIfBrick(GameObject* obj) {
@@ -77,6 +90,7 @@ void Ball::Update() {
     }
 
     CheckBottomTouched();
+    CheckOutOfBounds();
 }
 
 // Constructor
@@ -87,4 +101,5 @@ Ball::Ball(Vector2 newPosition, ConsoleColor newColor, std::vector<GameObject*>&
     objects = &gameObjects;
     brickCombo = 0;
     gameManager = gm;
+    startPos = newPosition;
 }
