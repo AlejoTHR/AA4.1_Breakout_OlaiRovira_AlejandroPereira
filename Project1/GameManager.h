@@ -30,8 +30,8 @@ public:
 	void Setnickname(BinSave &tmp, std::string &_name);
 	std::string Getnickname(BinSave &tmp, std::string _name);
 
-	void BinSaveSys(BinSave &tmp, std::string Path);
-	void BinLoadingSys(std::string Path, std::vector<BinSave> &ALL_RANKINGS);
+	bool BinSaveSys(BinSave &tmp, std::string Path);
+	bool BinLoadingSys(std::string Path, std::vector<BinSave> &ALL_RANKINGS);
 
 	// Constructor / Destructor
 	GameManager();

@@ -13,8 +13,9 @@ void RankingScene::Render() {
 	cout << menuText << endl << endl;
 	for (size_t i = 0; i < rankingRegisters.size(); i++)
 	{
-		cout << endl << i + 1 << ") " << rankingRegisters[0].nickName << " ____________ " << rankingRegisters[0].pointsTotal << endl;
+		cout << endl << i + 1 << ") " << rankingRegisters[i].nickName << " ____________ " << rankingRegisters[i].pointsTotal << endl;
 	}
+	if (rankingRegisters.size() <= 0) cout << "There are no player saved!";
 	cout << endl << endl << "Press Space To Continue..." << endl;
 	WaitForSpaceToContinue();
 }
@@ -27,7 +28,7 @@ void RankingScene::Update() {
 	{
 		// Read the saves file and put its info into an unsorted vector, which will be sorted later:
 		vector<GameManager::BinSave> tempRankingRegisters;
-		gameManager.BinLoadingSys("binsave.dat", tempRankingRegisters);
+		gameManager.BinLoadingSys(SAVES_FILE, tempRankingRegisters);
 		// En vez de esta línea, se llamará a una función para ordenar:
 		rankingRegisters = tempRankingRegisters;
 	}

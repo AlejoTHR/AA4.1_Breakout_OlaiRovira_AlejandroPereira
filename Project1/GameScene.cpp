@@ -104,7 +104,7 @@ void GameplayScene::Update() {
 
     BINSAVE.nickName = _name;
     BINSAVE.pointsTotal = gameManager.GetPoints();
-    gameManager.BinSaveSys(BINSAVE, "binsave.dat"); // CNTRL CLICK PARA REVISAR
+    gameManager.BinSaveSys(BINSAVE, SAVES_FILE); // CNTRL CLICK PARA REVISAR
     //
 
     WaitForSpaceToContinue();
