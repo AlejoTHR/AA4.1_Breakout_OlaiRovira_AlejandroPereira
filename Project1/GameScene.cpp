@@ -73,7 +73,6 @@ void GameplayScene::Update() {
     std::string _name;
     std::cout << "\n\n\t::INSERT NICKNAME (6 Chars max)::" << std::endl;
     std::cin >> _name;
-    BINSAVE.nickName = _name;
     //////
 
 
@@ -91,6 +90,7 @@ void GameplayScene::Update() {
             // El juego se para todo el rato por esto:
             // Es solo para testear:
             isPlaying = false;
+            cin.clear(); // CLEANS INPUT
             WaitForSpaceToContinue();
         }
 
@@ -102,6 +102,7 @@ void GameplayScene::Update() {
     // BINARIO KEEP
     WaitForSpaceToContinue();
 
+    BINSAVE.nickName = _name;
     BINSAVE.pointsTotal = gameManager.GetPoints();
     gameManager.BinSaveSys(BINSAVE, "binsave.dat"); // CNTRL CLICK PARA REVISAR
     //

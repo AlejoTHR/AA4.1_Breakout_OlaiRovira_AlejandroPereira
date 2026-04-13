@@ -63,6 +63,31 @@ void GameManager::BinSaveSys(BinSave SAVE, std::string Path) {
 	std::cout << "SAVED" << std::endl << std::endl;
 }
 
+void GameManager::BinLoadingSys(BinSave SAVE, std::string Path)
+{
+	std::cout << "Now Loading..." << std::endl << std::endl; // FEEDBACK
+
+	std::fstream FileBin;
+	FileBin.open(Path, std::ios::binary | std::ios::in);
+	if (!FileBin.is_open()) exit(15);
+	////// PLAYER DATA READING PROCESS::
+	BinSave tmp;
+	FileBin.read(reinterpret_cast<char*>(&tmp.pointsTotal), sizeof(tmp.pointsTotal));
+
+	// READ STRNG SIZE
+	size_t NameBinsize;
+	FileBin.read(reinterpret_cast<char*>(&NameBinsize), sizeof(size_t));
+	tmp.nickName.resize(NameBinsize);
+	// STRNG SIZE RE-SIZE FOR LOADING
+	FileBin.read(&tmp.nickName[0], sizeof(char) * NameBinsize);
+	// LAST "END" CAHRACTER OF THE STRNG STRUCTURE
+	tmp.nickName += '\0';
+
+	// DEBUG
+	std::cout << tmp.pointsTotal  << std::endl << tmp.nickName << std::endl;
+
+
+}
 
 GameManager::GameManager()
 {

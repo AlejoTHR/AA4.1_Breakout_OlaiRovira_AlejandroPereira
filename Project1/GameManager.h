@@ -9,6 +9,7 @@ private:
 	short lifes;
 	bool lost;
 	std::fstream FileBin;
+
 public:
 
 	struct BinSave {
@@ -27,6 +28,7 @@ public:
 	std::string Getnickname(BinSave tmp, std::string _name);
 
 	void BinSaveSys(BinSave tmp, std::string Path);
+	void BinLoadingSys(BinSave tmp, std::string Path);
 
 	GameManager();
 	~GameManager();
