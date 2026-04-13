@@ -25,15 +25,15 @@ bool GameManager::GameLost() {
 }
 
 
-void GameManager::Setnickname(BinSave tmp, std::string &_name){
+void GameManager::Setnickname(BinSave &tmp, std::string &_name){
 	tmp.nickName = _name;
 }
 
-std::string GameManager::Getnickname(BinSave tmp, std::string _name){
+std::string GameManager::Getnickname(BinSave &tmp, std::string _name){
 	return tmp.nickName;
 }
 
-void GameManager::BinSaveSys(BinSave SAVE, std::string Path) {
+void GameManager::BinSaveSys(BinSave &SAVE, std::string Path) {
 
 	BinSave tmp;
 
@@ -48,6 +48,7 @@ void GameManager::BinSaveSys(BinSave SAVE, std::string Path) {
 	// BIN POINTS
 	FileBin.write(reinterpret_cast<char*>(&tmp.pointsTotal), sizeof(tmp.pointsTotal));
 
+
 	// I HATE STRNGERS >:O
 	// BIN STRNG
 	// STRNG SIZE SAVING = STRING-TO-SAVE SIZE
@@ -57,6 +58,7 @@ void GameManager::BinSaveSys(BinSave SAVE, std::string Path) {
 	// SAVE STRNG CHAIN
 	FileBin.write(tmp.nickName.c_str(), sizeof(char) * NameBinsize);
 	
+	FileBin << "\n";
 	// FILE CLOSED
 	FileBin.close();
 
@@ -64,7 +66,7 @@ void GameManager::BinSaveSys(BinSave SAVE, std::string Path) {
 	std::cout << "\t\t  SAVED" << std::endl << std::endl;
 }
 
-void GameManager::BinLoadingSys(BinSave SAVE, std::string Path, std::vector<BinSave>& ALL_RANKINGS)
+void GameManager::BinLoadingSys(BinSave& SAVE, std::string Path, std::vector<BinSave>& ALL_RANKINGS)
 {
 	std::cout << "Now Loading..." << std::endl << std::endl; // FEEDBACK
 
@@ -75,23 +77,18 @@ void GameManager::BinLoadingSys(BinSave SAVE, std::string Path, std::vector<BinS
 
 	////// PLAYER DATA READING PROCESS::
 	BinSave tmp;
-	
 	// READ POINTS
 	FileBin.read(reinterpret_cast<char*>(&tmp.pointsTotal), sizeof(tmp.pointsTotal));
-
 	size_t NameBinsize;
 	// READ STRNG SIZE
 	FileBin.read(reinterpret_cast<char*>(&NameBinsize), sizeof(size_t));
 	tmp.nickName.resize(NameBinsize);
-
 	// STRNG SIZE RE-SIZE FOR LOADING
 	FileBin.read(&tmp.nickName[0], sizeof(char) * NameBinsize);
 	// LAST "END" CAHRACTER OF THE STRNG STRUCTURE
 	tmp.nickName += '\0';
-
 	// DEBUG
 	//std::cout << tmp.pointsTotal << std::endl << tmp.nickName << std::endl;
-
 	ALL_RANKINGS.push_back(tmp);
 
 

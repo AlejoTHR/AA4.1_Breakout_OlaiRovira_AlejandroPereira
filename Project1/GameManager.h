@@ -30,11 +30,11 @@ public:
 	void LoseLife();
 	bool GameLost();
 
-	void Setnickname(BinSave tmp, std::string &_name);
-	std::string Getnickname(BinSave tmp, std::string _name);
+	void Setnickname(BinSave &tmp, std::string &_name);
+	std::string Getnickname(BinSave &tmp, std::string _name);
 
-	void BinSaveSys(BinSave tmp, std::string Path);
-	void BinLoadingSys(BinSave tmp, std::string Path, std::vector<BinSave> &ALL_RANKINGS);
+	void BinSaveSys(BinSave &tmp, std::string Path);
+	void BinLoadingSys(BinSave &tmp, std::string Path, std::vector<BinSave> &ALL_RANKINGS);
 
 
 
