@@ -1,4 +1,5 @@
 #pragma once
+
 class GameManager
 {
 private:
@@ -14,4 +15,6 @@ public:
 	bool GameLost();
 	GameManager();
 	~GameManager();
+
+
 };

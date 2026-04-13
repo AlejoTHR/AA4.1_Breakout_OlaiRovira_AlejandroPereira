@@ -64,6 +64,21 @@ void GameplayScene::Render() {
 
 void GameplayScene::Update() {
     bool isPlaying = true;
+    // DEBUG, SE PUEDE CAMBIAR DISEÑO LUEGO
+    
+    
+    system("cls");
+
+    std::string _name;
+    std::cout << "\n\n\t::INSERT NICKNAME (6 Chars max)::" << std::endl;
+    
+    
+    /*
+    std::cin >> _name;
+    binSave BINSAVE;
+    BINSAVE.nameSave = _name;
+    */
+
 
     while (isPlaying) {
         Sleep(FRAME_TIME);
@@ -78,8 +93,18 @@ void GameplayScene::Update() {
             cout << "\nYOU LOOOOOOSE!\n";
             // El juego se para todo el rato por esto:
             // Es solo para testear:
+
+            // BINARIO KEEP
+//            BINSAVE.pointsSave = gameManager.GetPoints();
+
             WaitForSpaceToContinue();
+            system("cls");
+
+            std::cout << "\n\n\tGUARDANDO PROGRESO..." << std::endl;
+
+
         }
+
     }
 }
 
