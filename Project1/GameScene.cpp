@@ -90,18 +90,22 @@ void GameplayScene::Update() {
             cout << "\nYOU LOOOOOOSE!\n";
             // El juego se para todo el rato por esto:
             // Es solo para testear:
+            isPlaying = false;
             WaitForSpaceToContinue();
-            
-            
-            // BINARIO KEEP
-            system("cls");
-            BINSAVE.pointsTotal = gameManager.GetPoints();
-
-            gameManager.BinSaveSys(BINSAVE, "binsave.dat");
-            //
         }
 
     }
+
+    system("cls");
+    std::cout << "\n\n\tGUARDANDO PROGRESO..." << std::endl;
+
+    // BINARIO KEEP
+    WaitForSpaceToContinue();
+
+    BINSAVE.pointsTotal = gameManager.GetPoints();
+    gameManager.BinSaveSys(BINSAVE, "binsave.dat"); // CNTRL CLICK PARA REVISAR
+    //
+    nextScene = Scene::RANKING;
 }
 
 // Constructor
