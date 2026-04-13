@@ -11,12 +11,29 @@ void RankingScene::Start() {
 void RankingScene::Render() {
 	system("cls");
 	GameManager::BinSave BINLOAD;
+	std::vector<GameManager::BinSave> ALL_RANKING;
+	gamemanager.BinLoadingSys(BINLOAD, "binsave.dat", ALL_RANKING);
 
-	gamemanager.BinLoadingSys(BINLOAD, "binsave.dat");
+	cout << endl << menuText << endl << "Press Space to continue..." << endl;
+	WaitForSpaceToContinue();
+	system("cls");
 
-	cout << endl << menuText << endl << endl <<
-		"hacer sistema de lectura de binario" << endl << endl <<
-		"Press Space to continue..." << endl;
+	GameManager::BinSave tmp;
+	std::vector<GameManager::BinSave> TMPsort;
+
+	for (size_t i = 0; i < ALL_RANKING.size(); i++)
+	{
+
+	}
+
+	for (size_t i = 0; i < ALL_RANKING.size(); i++)
+	{
+		cout << std::endl << ALL_RANKING[0].nickName << " ____________ " << ALL_RANKING[0].pointsTotal << std::endl;
+		Sleep(100);
+	}
+	WaitForSpaceToContinue();
+
+
 
 }
 
@@ -31,7 +48,7 @@ void RankingScene::Update() {
 // Constructor
 RankingScene::RankingScene() {
 	
-	menuText = "\t ::RANKINGS::";
+	menuText = "\n\t::RANKINGS::";
 	nextScene = Scene::MENU;
 }
 

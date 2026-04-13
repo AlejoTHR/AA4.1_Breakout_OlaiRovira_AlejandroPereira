@@ -106,6 +106,8 @@ void GameplayScene::Update() {
     BINSAVE.pointsTotal = gameManager.GetPoints();
     gameManager.BinSaveSys(BINSAVE, "binsave.dat"); // CNTRL CLICK PARA REVISAR
     //
+
+    WaitForSpaceToContinue();
     nextScene = Scene::RANKING;
 }
 

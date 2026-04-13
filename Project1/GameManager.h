@@ -1,15 +1,11 @@
 #pragma once
 #include <string>
+#include <vector>
+#include <stack>
 #include <fstream>
 
 class GameManager
 {
-private:
-	unsigned int points;
-	short lifes;
-	bool lost;
-	std::fstream FileBin;
-
 public:
 
 	struct BinSave {
@@ -17,6 +13,16 @@ public:
 		unsigned int pointsTotal;
 	};
 
+private:
+	unsigned int points;
+	short lifes;
+	bool lost;
+	std::fstream FileBin;
+
+	std::vector<BinSave> ALLRANKING;
+
+
+public:
 	unsigned int GetPoints();
 	void AddPoints(int pointsToAdd);
 	
@@ -28,7 +34,9 @@ public:
 	std::string Getnickname(BinSave tmp, std::string _name);
 
 	void BinSaveSys(BinSave tmp, std::string Path);
-	void BinLoadingSys(BinSave tmp, std::string Path);
+	void BinLoadingSys(BinSave tmp, std::string Path, std::vector<BinSave> &ALL_RANKINGS);
+
+
 
 	GameManager();
 	~GameManager();
