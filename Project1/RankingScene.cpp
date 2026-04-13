@@ -10,39 +10,32 @@ void RankingScene::Start() {
 
 void RankingScene::Render() {
 	system("cls");
-	GameManager::BinSave BINLOAD;
-	std::vector<GameManager::BinSave> ALL_RANKING;
-	gamemanager.BinLoadingSys(BINLOAD, "binsave.dat", ALL_RANKING);
-
-	system("cls");
-
-	cout << endl << menuText << endl << "Press Space to continue..." << endl;
-	WaitForSpaceToContinue();
-
-	GameManager::BinSave tmp;
-	std::vector<GameManager::BinSave> TMPsort;
-
-	for (size_t i = 0; i < ALL_RANKING.size(); i++)
+	cout << menuText << endl << endl;
+	for (size_t i = 0; i < rankingRegisters.size(); i++)
 	{
-		cout << std::endl << ALL_RANKING[0].nickName << " ____________ " << ALL_RANKING[0].pointsTotal << std::endl;
+		cout << endl << i + 1 << ") " << rankingRegisters[0].nickName << " ____________ " << rankingRegisters[0].pointsTotal << endl;
 	}
+	cout << endl << endl << "Press Space To Continue..." << endl;
 	WaitForSpaceToContinue();
-
-
-
 }
 
 void RankingScene::Update() {
 	for (int i = 0; i < objects.size(); i++) {
 		objects[i]->Update();
 	}
+	// This scope is just used to erase "tempRankingRegisters" from memory after its usage:
+	{
+		// Read the saves file and put its info into an unsorted vector, which will be sorted later:
+		vector<GameManager::BinSave> tempRankingRegisters;
+		gameManager.BinLoadingSys("binsave.dat", tempRankingRegisters);
+		// En vez de esta línea, se llamará a una función para ordenar:
+		rankingRegisters = tempRankingRegisters;
+	}
 	Render();
-	WaitForSpaceToContinue();
 }
 
 // Constructor
 RankingScene::RankingScene() {
-	
 	menuText = "\n\t::RANKINGS::";
 	nextScene = Scene::MENU;
 }

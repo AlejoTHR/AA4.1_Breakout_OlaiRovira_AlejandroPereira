@@ -7,7 +7,6 @@
 class GameManager
 {
 public:
-
 	struct BinSave {
 		std::string nickName;
 		unsigned int pointsTotal;
@@ -18,9 +17,7 @@ private:
 	short lifes;
 	bool lost;
 	std::fstream FileBin;
-
 	std::vector<BinSave> ALLRANKING;
-
 
 public:
 	unsigned int GetPoints();
@@ -34,12 +31,9 @@ public:
 	std::string Getnickname(BinSave &tmp, std::string _name);
 
 	void BinSaveSys(BinSave &tmp, std::string Path);
-	void BinLoadingSys(BinSave &tmp, std::string Path, std::vector<BinSave> &ALL_RANKINGS);
+	void BinLoadingSys(std::string Path, std::vector<BinSave> &ALL_RANKINGS);
 
-
-
+	// Constructor / Destructor
 	GameManager();
 	~GameManager();
-
-
 };

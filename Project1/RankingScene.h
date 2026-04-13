@@ -9,9 +9,10 @@ using namespace std;
 class RankingScene : public Scene
 {
 private:
-	GameManager gamemanager;
-protected:
+	GameManager gameManager;
 	string menuText;
+	vector<GameManager::BinSave> rankingRegisters;
+
 public:
 	void Start() override;
 

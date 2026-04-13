@@ -39,8 +39,15 @@ int main() {
 
         index = AllSecenes[index]->ChangeScene();
         if (index == Scene::EXIT) isExitTime = true;
+
+        // The only purpose of this is giving time for the player to release
+        // any pressed button so the next scene doesn't read an unwanted input:
+        system("cls");
+        cout << "Loading...";
+        Sleep(SCENE_TRAVEL_TIME);
     }
 
+    system("cls");
     cout << "Goodbye!" << endl;
     return 0;
 }

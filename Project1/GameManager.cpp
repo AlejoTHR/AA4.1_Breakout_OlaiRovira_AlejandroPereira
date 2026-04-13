@@ -48,13 +48,12 @@ void GameManager::BinSaveSys(BinSave &SAVE, std::string Path) {
 	// BIN POINTS
 	FileBin.write(reinterpret_cast<char*>(&tmp.pointsTotal), sizeof(tmp.pointsTotal));
 
-
 	// I HATE STRNGERS >:O
 	// BIN STRNG
 	// STRNG SIZE SAVING = STRING-TO-SAVE SIZE
-	size_t NameBinsize = tmp.nickName.size();
+	short NameBinsize = tmp.nickName.size();
 	// SAVE STRNG SIZE
-	FileBin.write(reinterpret_cast<char*>(&NameBinsize), sizeof(size_t));
+	FileBin.write(reinterpret_cast<char*>(&NameBinsize), sizeof(short));
 	// SAVE STRNG CHAIN
 	FileBin.write(tmp.nickName.c_str(), sizeof(char) * NameBinsize);
 	
@@ -66,7 +65,7 @@ void GameManager::BinSaveSys(BinSave &SAVE, std::string Path) {
 	std::cout << "\t\t  SAVED" << std::endl << std::endl;
 }
 
-void GameManager::BinLoadingSys(BinSave& SAVE, std::string Path, std::vector<BinSave>& ALL_RANKINGS)
+void GameManager::BinLoadingSys(std::string Path, std::vector<BinSave>& ALL_RANKINGS)
 {
 	std::cout << "Now Loading..." << std::endl << std::endl; // FEEDBACK
 
@@ -74,14 +73,13 @@ void GameManager::BinLoadingSys(BinSave& SAVE, std::string Path, std::vector<Bin
 	FileBin.open(Path, std::ios::binary | std::ios::in);
 	if (!FileBin.is_open()) exit(15);
 
-
 	////// PLAYER DATA READING PROCESS::
 	BinSave tmp;
 	// READ POINTS
 	FileBin.read(reinterpret_cast<char*>(&tmp.pointsTotal), sizeof(tmp.pointsTotal));
-	size_t NameBinsize;
+	short NameBinsize;
 	// READ STRNG SIZE
-	FileBin.read(reinterpret_cast<char*>(&NameBinsize), sizeof(size_t));
+	FileBin.read(reinterpret_cast<char*>(&NameBinsize), sizeof(short));
 	tmp.nickName.resize(NameBinsize);
 	// STRNG SIZE RE-SIZE FOR LOADING
 	FileBin.read(&tmp.nickName[0], sizeof(char) * NameBinsize);
@@ -91,11 +89,11 @@ void GameManager::BinLoadingSys(BinSave& SAVE, std::string Path, std::vector<Bin
 	//std::cout << tmp.pointsTotal << std::endl << tmp.nickName << std::endl;
 	ALL_RANKINGS.push_back(tmp);
 
-
-
 	FileBin.close();
 	std::cout << "LOADED" << std::endl << std::endl;
 }
+
+// Constructor / Destructor
 
 GameManager::GameManager()
 {
@@ -106,4 +104,5 @@ GameManager::GameManager()
 
 GameManager::~GameManager()
 {
+
 }
