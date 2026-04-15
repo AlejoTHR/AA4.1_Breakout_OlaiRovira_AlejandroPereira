@@ -4,7 +4,7 @@
 #include "Brick.h"
 #include "Pad.h"
 #include "Ball.h"
-
+#define BRICK_ROWS 3
 // Private Methods
 
 void GameplayScene::CreateWalls(){
@@ -20,7 +20,7 @@ void GameplayScene::CreateWalls(){
 }
 
 void GameplayScene::CreateBricks(){
-    for (int row = 1; row <= 3; row++) {
+    for (int row = 1; row <= BRICK_ROWS; row++) {
         for (int col = 1; col < MAP_SIZE - 1; col++) {
             objects.push_back(new Brick(Vector2(col, row), CYAN, &gameManager));
         }
@@ -54,6 +54,8 @@ void GameplayScene::Render() {
         Brick* touchedBrick = dynamic_cast<Brick*>(objects[i]);
         if (touchedBrick != NULL && touchedBrick->GetDestroyed()) {
 			objects.erase(objects.begin() + i);
+            
+            gameManager.BrickDestroyed();
             i--;
         }
         objects[i]->Render();
@@ -85,7 +87,7 @@ void GameplayScene::Update() {
         Render();
 
         // Work In Progress
-        if (gameManager.GameLost()) {
+        if (gameManager.GameOver()) {
             cout << "\nYOU LOOOOOOSE!\n";
             // El juego se para todo el rato por esto:
             // Es solo para testear:

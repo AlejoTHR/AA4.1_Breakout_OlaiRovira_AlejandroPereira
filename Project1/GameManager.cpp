@@ -3,7 +3,7 @@
 #include <vector>
 #include <iostream>
 
-// GAME STATE
+#pragma region GAME STATE
 
 unsigned int GameManager::GetPoints() {
 	return points;
@@ -19,14 +19,14 @@ short GameManager::GetLifes() {
 
 void GameManager::LoseLife() {
 	lifes--;
-	lost = lifes <= 0;
+	over = lifes <= 0;
 }
 
-bool GameManager::GameLost() {
-	return lost;
+bool GameManager::GameOver() {
+	return over;
 }
+#pragma endregion
 
-//  
 
 void GameManager::Setnickname(BinSave &tmp, std::string &_name){
 	tmp.nickName = _name;
@@ -109,13 +109,20 @@ bool GameManager::BinLoadingSys(std::string Path, std::vector<BinSave>& ALL_RANK
 	return true;
 }
 
+
+void GameManager::BrickDestroyed()
+{
+	brickCounter--;
+}
+
+
 // Constructor / Destructor
 
 GameManager::GameManager()
 {
 	points = 0;
 	lifes = INITIAL_LIFES;
-	lost = false;
+	over = false;
 }
 
 GameManager::~GameManager()
