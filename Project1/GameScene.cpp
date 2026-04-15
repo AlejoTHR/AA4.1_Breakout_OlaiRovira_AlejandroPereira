@@ -22,7 +22,7 @@ void GameplayScene::CreateWalls(){
 void GameplayScene::CreateBricks(){
     for (int row = 1; row <= BRICK_ROWS; row++) {
         for (int col = 1; col < MAP_SIZE - 1; col++) {
-            objects.push_back(new Brick(Vector2(col, row), CYAN, &gameManager));
+            objects.push_back(new Brick(Vector2(col, row), CYAN, gameManager));
         }
     }
 }
@@ -32,7 +32,7 @@ void GameplayScene::CreatePlayer() {
 }
 
 void GameplayScene::CreateBall() {
-    objects.push_back(new Ball(playerSpawnPos + Vector2(0, -5), WHITE, objects, &gameManager));
+    objects.push_back(new Ball(playerSpawnPos + Vector2(0, -5), WHITE, objects, gameManager));
 }
 
 // Public Methods
@@ -47,15 +47,15 @@ void GameplayScene::Render() {
     system("cls");
     ConsoleSetColor(WHITE, BLACK);
     ConsoleXY(0, 0);
-    cout << "LIFES: " << gameManager.GetLifes() << endl;
-    cout << "POINTS: " << gameManager.GetPoints() << endl;
+    cout << "LIFES: " << gameManager->GetLifes() << endl;
+    cout << "POINTS: " << gameManager->GetPoints() << endl;
 
     for (int i = 0; i < objects.size(); i++) {
         Brick* touchedBrick = dynamic_cast<Brick*>(objects[i]);
         if (touchedBrick != NULL && touchedBrick->GetDestroyed()) {
 			objects.erase(objects.begin() + i);
             
-            gameManager.BrickDestroyed();
+            gameManager->BrickDestroyed();
             i--;
         }
         objects[i]->Render();
@@ -70,7 +70,7 @@ void GameplayScene::Update() {
     bool isPlaying = true;
 
     // DEBUG, SE PUEDE CAMBIAR DISEÑO LUEGO
-    GameManager::BinSave BINSAVE;    
+    BinSave BINSAVE;    
     system("cls");
     std::string _name;
     std::cout << "\n\n\t::INSERT NICKNAME (6 Chars max)::" << std::endl;
@@ -87,7 +87,7 @@ void GameplayScene::Update() {
         Render();
 
         // Work In Progress
-        if (gameManager.GameOver()) {
+        if (gameManager->GameOver()) {
             cout << "\nYOU LOOOOOOSE!\n";
             // El juego se para todo el rato por esto:
             // Es solo para testear:
@@ -104,10 +104,9 @@ void GameplayScene::Update() {
     // BINARIO KEEP
     WaitForSpaceToContinue();
 
-    BINSAVE.nickName = _name;
-    BINSAVE.pointsTotal = gameManager.GetPoints();
-    gameManager.BinSaveSys(BINSAVE, SAVES_FILE); // CNTRL CLICK PARA REVISAR
-    //
+    BINSAVE.username = _name;
+    BINSAVE.points = gameManager->GetPoints();
+    FileManager::BinSaveSys(BINSAVE); // CNTRL CLICK PARA REVISAR
 
     WaitForSpaceToContinue();
     nextScene = Scene::RANKING;
@@ -116,6 +115,7 @@ void GameplayScene::Update() {
 // Constructor
 GameplayScene::GameplayScene() {
     playerSpawnPos = Vector2(MAP_SIZE / 2, (MAP_SIZE * 3) / 4);
+    gameManager = new GameManager(MAP_SIZE * BRICK_ROWS);
 }
 
 // Destructor

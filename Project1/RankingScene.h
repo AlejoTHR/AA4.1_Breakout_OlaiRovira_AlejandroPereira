@@ -2,16 +2,15 @@
 #include <tuple>
 #include "Scene.h"
 #include "Cons.h"
-#include "GameManager.h"
+#include "FileManager.h"
 
 using namespace std;
 
 class RankingScene : public Scene
 {
 private:
-	GameManager gameManager;
 	string menuText;
-	vector<GameManager::BinSave> rankingRegisters;
+	vector<BinSave> rankingRegisters;
 
 public:
 	void Start() override;

@@ -2,6 +2,7 @@
 #include "Scene.h"
 #include "MenuScene.h"
 #include "GameManager.h"
+#include "FileManager.h"
 
 #define FRAME_TIME 150
 

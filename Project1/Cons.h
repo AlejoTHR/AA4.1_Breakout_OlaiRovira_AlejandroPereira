@@ -9,7 +9,6 @@
 
 // Player
 #define INITIAL_LIFES 3
-#define SAVES_FILE "binsave.dat"
 
 // Bricks
 #define POINTS_PER_BRICK 15

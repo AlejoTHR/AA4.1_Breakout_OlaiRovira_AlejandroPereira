@@ -13,7 +13,7 @@ void RankingScene::Render() {
 	cout << menuText << endl << endl;
 	for (size_t i = 0; i < rankingRegisters.size(); i++)
 	{
-		cout << endl << i + 1 << ") " << rankingRegisters[i].nickName << " ____________ " << rankingRegisters[i].pointsTotal << endl;
+		cout << endl << i + 1 << ") " << rankingRegisters[i].username << " ____________ " << rankingRegisters[i].points << endl;
 	}
 	if (rankingRegisters.size() <= 0) cout << "There are no player saved!";
 	cout << endl << endl << "Press Space To Continue..." << endl;
@@ -27,8 +27,8 @@ void RankingScene::Update() {
 	// This scope is just used to erase "tempRankingRegisters" from memory after its usage:
 	{
 		// Read the saves file and put its info into an unsorted vector, which will be sorted later:
-		vector<GameManager::BinSave> tempRankingRegisters;
-		gameManager.BinLoadingSys(SAVES_FILE, tempRankingRegisters);
+		vector<BinSave> tempRankingRegisters;
+		FileManager::BinLoadingSys(tempRankingRegisters);
 		// En vez de esta línea, se llamará a una función para ordenar:
 		rankingRegisters = tempRankingRegisters;
 	}
