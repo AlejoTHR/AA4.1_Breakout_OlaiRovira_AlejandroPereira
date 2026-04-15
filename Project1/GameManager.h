@@ -22,6 +22,7 @@ public:
 	short GetLifes();
 	void LoseLife();
 	bool GetGameEnded();
+	void Resetgame();
 
 	std::string ShowGameOverMsg();
 

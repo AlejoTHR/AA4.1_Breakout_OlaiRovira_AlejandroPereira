@@ -8,6 +8,7 @@
 
 class GameplayScene : public Scene {
 private:
+    bool RunEnded = true;
     Vector2 playerSpawnPos;
     GameManager* gameManager;
 
@@ -18,6 +19,8 @@ private:
     void CreatePlayer();
 
     void CreateBall();
+
+    void CleanCanvas();
 
 public:
     void Start() override;

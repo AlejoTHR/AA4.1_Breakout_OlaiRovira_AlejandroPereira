@@ -1,5 +1,6 @@
 #include "FileManager.h"
 
+
 using namespace std;
 
 const string FileManager::saveFile = "binsave.dat";
@@ -38,11 +39,13 @@ void FileManager::BinSaveSys(BinSave& SAVE) {
 	FileBin.close();
 
 	// FEEDBACK, EVERYTHING OK :D
-	cout << "\t\t  SAVED" << endl << endl;
+	cout << "\t\tSAVED" << endl << endl;
 }
 
 void FileManager::BinLoadingSys(vector<BinSave>& ALL_RANKINGS) {
-	cout << "Now Loading..." << endl << endl; // FEEDBACK
+	system("cls");
+	cout << "\n\n\t\tNow Loading..." << endl << endl; // FEEDBACK
+	
 
 	fstream FileBin;
 	FileBin.open(saveFile, ios::binary | ios::in);
@@ -72,6 +75,7 @@ void FileManager::BinLoadingSys(vector<BinSave>& ALL_RANKINGS) {
 	}
 
 	FileBin.close();
+	system("cls");
 	cout << "LOADED" << endl << endl;
 }
 
@@ -93,6 +97,9 @@ vector<BinSave> FileManager::SortLoadedPoints(vector<BinSave>& _ToSort)
 		}
 	}
 
+	if (sortSize >= MAX_REGISTERED) // IF SORTED VECTOR HAS MORE THAN 5 REGISTERS
+		for (size_t i = 0; i < sortSize-MAX_REGISTERED; i++)	_ToSort.pop_back(); // DELETE FROM LOWEST DOWN-WARDS
+	
 	return _ToSort;
 }
 

@@ -5,6 +5,8 @@
 #include <vector>
 #include <iostream>
 
+#define MAX_REGISTERED 6
+
 using namespace std;
 
 struct BinSave {

@@ -27,6 +27,13 @@ void GameManager::LoseLife() {
 bool GameManager::GetGameEnded() {
 	return GameEnded;
 }
+
+void GameManager::Resetgame()
+{
+	lifes = 3;
+	points = 0;
+	GameEnded = false;
+}
 #pragma endregion
 
 std::string GameManager::ShowGameOverMsg()
@@ -39,7 +46,7 @@ std::string GameManager::ShowGameOverMsg()
 void GameManager::BrickDestroyed()
 {
 	brickCounter--;
-	std::cout << brickCounter;
+	std::cout << "X";
 	if (brickCounter <= 0)
 	{
 		youWin = true;
