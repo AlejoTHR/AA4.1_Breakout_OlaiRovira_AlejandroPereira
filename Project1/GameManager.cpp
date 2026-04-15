@@ -21,17 +21,30 @@ short GameManager::GetLifes() {
 
 void GameManager::LoseLife() {
 	lifes--;
-	over = lifes <= 0;
+	GameEnded = lifes <= 0;
 }
 
-bool GameManager::GameOver() {
-	return over;
+bool GameManager::GetGameEnded() {
+	return GameEnded;
 }
 #pragma endregion
+
+std::string GameManager::ShowGameOverMsg()
+{
+	gameOverMsng = (youWin) ? "YOU WIN" : "YOU LOOSE";
+	return gameOverMsng;
+}
+
 
 void GameManager::BrickDestroyed()
 {
 	brickCounter--;
+	std::cout << brickCounter;
+	if (brickCounter <= 0)
+	{
+		youWin = true;
+		GameEnded = true;
+	}
 }
 
 // Constructor / Destructor
@@ -40,7 +53,7 @@ GameManager::GameManager(unsigned int _brickTotal)
 {
 	points = 0;
 	lifes = INITIAL_LIFES;
-	over = false;
+	GameEnded = false;
 
 	brickCounter = _brickTotal;
 }

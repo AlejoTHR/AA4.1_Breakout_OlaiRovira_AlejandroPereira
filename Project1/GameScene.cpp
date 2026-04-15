@@ -54,7 +54,6 @@ void GameplayScene::Render() {
         Brick* touchedBrick = dynamic_cast<Brick*>(objects[i]);
         if (touchedBrick != NULL && touchedBrick->GetDestroyed()) {
 			objects.erase(objects.begin() + i);
-            
             gameManager->BrickDestroyed();
             i--;
         }
@@ -72,6 +71,7 @@ void GameplayScene::Update() {
     // DEBUG, SE PUEDE CAMBIAR DISEÑO LUEGO
     BinSave BINSAVE;    
     system("cls");
+    cin.clear(); // CLEANS INPUT
     std::string _name;
     std::cout << "\n\n\t::INSERT NICKNAME (6 Chars max)::" << std::endl;
     std::cin >> _name;
@@ -87,14 +87,16 @@ void GameplayScene::Update() {
         Render();
 
         // Work In Progress
-        if (gameManager->GameOver()) {
-            cout << "\nYOU LOOOOOOSE!\n";
-            // El juego se para todo el rato por esto:
-            // Es solo para testear:
-            isPlaying = false;
+        if (gameManager->GetGameEnded()) {
+            cout << "\n\n\n\n\t\tGAME OVER\n" << endl << endl;
+            cout << endl << "\t\t" << gameManager->ShowGameOverMsg();
             cin.clear(); // CLEANS INPUT
             WaitForSpaceToContinue();
+
+            isPlaying = false;
         }
+
+
 
     }
 

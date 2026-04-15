@@ -9,7 +9,9 @@ class GameManager
 private:
 	unsigned int points;
 	short lifes;
-	bool over;
+	bool GameEnded;
+	bool youWin = false;
+	std::string gameOverMsng;
 
 	unsigned int brickCounter;
 public:
@@ -19,10 +21,11 @@ public:
 
 	short GetLifes();
 	void LoseLife();
-	bool GameOver();
+	bool GetGameEnded();
+
+	std::string ShowGameOverMsg();
 
 	void BrickDestroyed();
-
 	// Constructor / Destructor
 	GameManager(unsigned int _brickTotal);
 	~GameManager();
