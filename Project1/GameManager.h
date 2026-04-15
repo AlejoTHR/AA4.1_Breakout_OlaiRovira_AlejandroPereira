@@ -34,9 +34,11 @@ public:
 	bool BinSaveSys(BinSave& tmp, std::string Path);
 	bool BinLoadingSys(std::string Path, std::vector<BinSave>& ALL_RANKINGS);
 
+	std::stack<GameManager::BinSave> SortLoadedPoints(std::vector<BinSave>& _ToSort);
+
 	void BrickDestroyed();
 
 	// Constructor / Destructor
-	GameManager();
+	GameManager(unsigned int _brickTotal);
 	~GameManager();
 };

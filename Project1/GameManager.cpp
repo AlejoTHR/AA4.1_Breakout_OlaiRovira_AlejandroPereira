@@ -1,7 +1,9 @@
 #include "GameManager.h"
 #include "Cons.h"
 #include <vector>
+#include <stack>
 #include <iostream>
+
 
 #pragma region GAME STATE
 
@@ -115,14 +117,34 @@ void GameManager::BrickDestroyed()
 	brickCounter--;
 }
 
+std::stack<GameManager::BinSave> SortLoadedPoints(std::vector<GameManager::BinSave>& _ToSort)
+{
+	int sortSize = _ToSort.size();
+
+	std::stack<GameManager::BinSave> TMPSort;
+
+	for (int i = 0; i < sortSize-1; i++)
+	{
+		for (int j = 0; j < sortSize-i-1; j++)
+		{
+			if (_ToSort[j].pointsTotal < _ToSort[j + 1].pointsTotal)
+			{
+				TMPSort.push(_ToSort[j]);
+			}
+		}
+	}
+	return TMPSort;
+}
 
 // Constructor / Destructor
 
-GameManager::GameManager()
+GameManager::GameManager(unsigned int _brickTotal)
 {
 	points = 0;
 	lifes = INITIAL_LIFES;
 	over = false;
+
+	brickCounter = _brickTotal;
 }
 
 GameManager::~GameManager()

@@ -8,9 +8,8 @@
 class GameplayScene : public Scene {
 private:
     Vector2 playerSpawnPos;
-    GameManager gameManager;
+    GameManager* gameManager;
 
-protected:
     void CreateWalls();
 
     void CreateBricks();
