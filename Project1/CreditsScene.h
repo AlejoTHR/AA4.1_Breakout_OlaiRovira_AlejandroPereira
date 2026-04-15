@@ -7,6 +7,8 @@ using namespace std;
 class CreditsScene : public Scene
 {
 private:
+	string menuText;
+	string extraText;
 
 public:
 	void Start() override;

@@ -9,10 +9,10 @@ void CreditsScene::Start() {
 
 void CreditsScene::Render() {
 	system("cls");
-	cout << "\t ::CREDITS::" << endl << endl <<
+	cout << menuText << endl << endl <<
 		" - ALEJANDRO PEREIRA -" << endl <<
 		" - OLAI ROVIRA -" << endl << endl <<
-		"Press Space to continue..." << endl;
+		extraText << endl;
 }
 
 void CreditsScene::Update() {
@@ -26,6 +26,8 @@ void CreditsScene::Update() {
 // Constructor
 CreditsScene::CreditsScene() {
 	nextScene = Scene::MENU;
+	menuText = "\t ::CREDITS::";
+	extraText = "Press Space to continue...";
 }
 
 // Destructor

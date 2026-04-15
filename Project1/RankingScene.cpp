@@ -16,7 +16,7 @@ void RankingScene::Render() {
 		cout << endl << i + 1 << ") " << rankingRegisters[i].username << " ____________ " << rankingRegisters[i].points << endl;
 	}
 	if (rankingRegisters.size() <= 0) cout << "There are no player saved!";
-	cout << endl << endl << "Press Space To Continue..." << endl;
+	cout << endl << endl << extraText << endl;
 	WaitForSpaceToContinue();
 }
 
@@ -38,6 +38,7 @@ void RankingScene::Update() {
 // Constructor
 RankingScene::RankingScene() {
 	menuText = "\n\t::RANKINGS::";
+	extraText = "Press Space To Continue...";
 	nextScene = Scene::MENU;
 }
 

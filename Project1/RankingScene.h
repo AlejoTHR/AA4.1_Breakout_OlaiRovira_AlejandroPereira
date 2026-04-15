@@ -10,6 +10,7 @@ class RankingScene : public Scene
 {
 private:
 	string menuText;
+	string extraText;
 	vector<BinSave> rankingRegisters;
 
 public:
