@@ -3,25 +3,25 @@
 #include <fstream>
 #include <stack>
 #include <vector>
-#include <iostream>
-
-#define MAX_REGISTERED 6
+#include <string>
 
 using namespace std;
 
 struct BinSave {
 	string username;
-	unsigned int points;
+	unsigned int points = 0;
 };
 
 class FileManager
 {
 private:
+	static const unsigned short maxRegisters;
 	static const string saveFile;
+	static void SortLoadedPoints(vector<BinSave>& _ToSort);
+
 public:
-	static void BinSaveSys(BinSave& tmp);
-	static void BinLoadingSys(vector<BinSave>& ALL_RANKINGS);
-	static vector<BinSave> SortLoadedPoints(vector<BinSave>& _ToSort);
+	static bool BinSaveSys(BinSave& tmp);
+	static bool BinLoadingSys(vector<BinSave>& ALL_RANKINGS);
 
 	FileManager();
 	~FileManager();

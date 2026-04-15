@@ -24,14 +24,7 @@ void RankingScene::Update() {
 	for (int i = 0; i < objects.size(); i++) {
 		objects[i]->Update();
 	}
-	// This scope is just used to erase "tempRankingRegisters" from memory after its usage:
-	{
-		// Read the saves file and put its info into an unsorted vector, which will be sorted later:
-		vector<BinSave> tempRankingRegisters;
-		FileManager::BinLoadingSys(tempRankingRegisters);
-		// En vez de esta línea, se llamará a una función para ordenar:
-		rankingRegisters = FileManager::SortLoadedPoints(tempRankingRegisters);
-	}
+	FileManager::BinLoadingSys(rankingRegisters);
 	Render();
 }
 

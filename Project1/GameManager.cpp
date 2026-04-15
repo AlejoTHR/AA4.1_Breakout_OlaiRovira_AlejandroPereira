@@ -38,8 +38,7 @@ void GameManager::Resetgame()
 
 std::string GameManager::ShowGameOverMsg()
 {
-	gameOverMsng = (youWin) ? "YOU WIN" : "YOU LOOSE";
-	return gameOverMsng;
+	return (youWin) ? "\tYOU WIN" : "\tYOU LOOSE";
 }
 
 

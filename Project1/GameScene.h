@@ -5,6 +5,8 @@
 #include "FileManager.h"
 
 #define FRAME_TIME 150
+#define BRICK_ROWS 3
+#define CHAR_MAX 20
 
 class GameplayScene : public Scene {
 private:
