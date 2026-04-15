@@ -96,8 +96,6 @@ void GameplayScene::Update() {
             isPlaying = false;
         }
 
-
-
     }
 
     system("cls");
@@ -108,7 +106,7 @@ void GameplayScene::Update() {
 
     BINSAVE.username = _name;
     BINSAVE.points = gameManager->GetPoints();
-    FileManager::BinSaveSys(BINSAVE); // CNTRL CLICK PARA REVISAR
+    FileManager::BinSaveSys(BINSAVE);
 
     WaitForSpaceToContinue();
     nextScene = Scene::RANKING;

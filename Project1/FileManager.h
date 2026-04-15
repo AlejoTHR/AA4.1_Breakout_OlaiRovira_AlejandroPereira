@@ -17,12 +17,10 @@ class FileManager
 private:
 	static const string saveFile;
 public:
-	static bool BinSaveSys(BinSave& tmp);
-	static bool BinLoadingSys(vector<BinSave>& ALL_RANKINGS);
+	static void BinSaveSys(BinSave& tmp);
+	static void BinLoadingSys(vector<BinSave>& ALL_RANKINGS);
+	static vector<BinSave> SortLoadedPoints(vector<BinSave>& _ToSort);
 
 	FileManager();
 	~FileManager();
-
-private:
-	stack<BinSave> SortLoadedPoints(vector<BinSave>& _ToSort);
 };

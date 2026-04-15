@@ -30,7 +30,7 @@ void RankingScene::Update() {
 		vector<BinSave> tempRankingRegisters;
 		FileManager::BinLoadingSys(tempRankingRegisters);
 		// En vez de esta línea, se llamará a una función para ordenar:
-		rankingRegisters = tempRankingRegisters;
+		rankingRegisters = FileManager::SortLoadedPoints(tempRankingRegisters);
 	}
 	Render();
 }

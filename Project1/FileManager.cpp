@@ -4,7 +4,7 @@ using namespace std;
 
 const string FileManager::saveFile = "binsave.dat";
 
-bool FileManager::BinSaveSys(BinSave& SAVE) {
+void FileManager::BinSaveSys(BinSave& SAVE) {
 	vector<BinSave> actualSavesFile;
 	BinLoadingSys(actualSavesFile);
 	actualSavesFile.push_back(SAVE);
@@ -12,7 +12,7 @@ bool FileManager::BinSaveSys(BinSave& SAVE) {
 	fstream FileBin;
 	FileBin.open(saveFile, ios::binary | ios::out);
 	if (!FileBin.is_open()) {
-		return false;
+		exit(15);
 	}
 
 	// SAVING SYS ORDER = SAVE NUM OF PLAYERS REGISTERED -> (WRITE POINTS -> WRITE NAME --> REPEAT)
@@ -39,16 +39,15 @@ bool FileManager::BinSaveSys(BinSave& SAVE) {
 
 	// FEEDBACK, EVERYTHING OK :D
 	cout << "\t\t  SAVED" << endl << endl;
-	return true;
 }
 
-bool FileManager::BinLoadingSys(vector<BinSave>& ALL_RANKINGS) {
+void FileManager::BinLoadingSys(vector<BinSave>& ALL_RANKINGS) {
 	cout << "Now Loading..." << endl << endl; // FEEDBACK
 
 	fstream FileBin;
 	FileBin.open(saveFile, ios::binary | ios::in);
 	if (!FileBin.is_open()) {
-		return false;
+		exit(15);
 	}
 
 	// Read number of registered players:
@@ -74,14 +73,12 @@ bool FileManager::BinLoadingSys(vector<BinSave>& ALL_RANKINGS) {
 
 	FileBin.close();
 	cout << "LOADED" << endl << endl;
-	return true;
 }
 
-stack<BinSave> FileManager::SortLoadedPoints(vector<BinSave>& _ToSort)
+vector<BinSave> FileManager::SortLoadedPoints(vector<BinSave>& _ToSort)
 {
 	int sortSize = _ToSort.size();
-
-	stack<BinSave> TMPSort;
+	int TMPSort;
 
 	for (int i = 0; i < sortSize - 1; i++)
 	{
@@ -89,11 +86,14 @@ stack<BinSave> FileManager::SortLoadedPoints(vector<BinSave>& _ToSort)
 		{
 			if (_ToSort[j].points < _ToSort[j + 1].points)
 			{
-				TMPSort.push(_ToSort[j]);
+				TMPSort = _ToSort[j].points;
+				_ToSort[j].points = _ToSort[j + 1].points;
+				_ToSort[j + 1].points = TMPSort;
 			}
 		}
 	}
-	return TMPSort;
+
+	return _ToSort;
 }
 
 // CONSTRUCTOR / DESTRUCTOR
