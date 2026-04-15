@@ -1,5 +1,7 @@
 #include <iostream>
 #include "MenuScene.h"
+#include <limits> // for numeric_limits
+
 
 using namespace std;
 
@@ -48,8 +50,8 @@ void MenuScene::Update() {
 			selectedOption = 0;
 
 		Render();
-	}
 
+	}
 	nextScene = options[selectedOption].second;
 }
 

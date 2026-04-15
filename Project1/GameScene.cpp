@@ -5,6 +5,7 @@
 #include "Pad.h"
 #include "Ball.h"
 #define BRICK_ROWS 3
+#define CHAR_MAX 10
 // Private Methods
 
 void GameplayScene::CreateWalls(){
@@ -81,18 +82,16 @@ void GameplayScene::Update() {
 
     BinSave BINSAVE;    
     system("cls");
-    cin.clear(); // CLEANS INPUT
-    
+
     std::string _name;
-    bool retry = false;
     do
     {
-        std::cout << "\n\n\t::INSERT NICKNAME (6 Chars max)::" << std::endl;
+        std::cout << "\n\n\t::INSERT NICKNAME (10 Chars max)::" << std::endl;
         std::cin >> _name;
-        if (_name.size() > 6) retry = true; // LONGER THAN & CHARS
         system("cls");
-    } while (retry);
+    } while (_name.size() > CHAR_MAX);
 
+        
     //////
 
 
@@ -106,7 +105,7 @@ void GameplayScene::Update() {
 
         // Work In Progress
         if (gameManager->GetGameEnded()) {
-            cout << "\t\tGAME OVER\n" << endl << endl;
+            cout << "\n\n\n\n\t\tGAME OVER\n" << endl << endl;
             cout << endl << "\t\t" << gameManager->ShowGameOverMsg();
             WaitForSpaceToContinue();
 
@@ -116,13 +115,12 @@ void GameplayScene::Update() {
     }
 
     system("cls");
-    std::cout << "\n\n\tGUARDANDO PROGRESO..." << std::endl;
+    std::cout << "\n\n\tSAVING..." << std::endl;
     std::cout << "Press Space to continue...";
     WaitForSpaceToContinue();
     system("cls");
 
     // BINARIO KEEP
-
     BINSAVE.username = _name;
     BINSAVE.points = gameManager->GetPoints();
     
@@ -134,7 +132,6 @@ void GameplayScene::Update() {
     CleanCanvas(); // RESETS THE GAME
 
     nextScene = Scene::RANKING;
-
     system("cls");
 }
 
