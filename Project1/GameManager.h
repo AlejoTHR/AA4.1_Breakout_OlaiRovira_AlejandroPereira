@@ -11,7 +11,6 @@ private:
 	short lifes;
 	bool GameEnded;
 	bool youWin = false;
-	std::string gameOverMsng;
 
 	unsigned int brickCounter;
 public:

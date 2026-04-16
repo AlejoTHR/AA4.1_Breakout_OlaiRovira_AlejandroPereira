@@ -4,8 +4,6 @@
 #include "Brick.h"
 #include "Pad.h"
 #include "Ball.h"
-#define BRICK_ROWS 3
-#define CHAR_MAX 10
 // Private Methods
 
 void GameplayScene::CreateWalls(){
@@ -78,61 +76,44 @@ void GameplayScene::Update() {
 
     gameManager->Resetgame(); // RESTART POINS N LIFES
 
-    bool isPlaying = true;
-
-    BinSave BINSAVE;    
     system("cls");
-
-    std::string _name;
+    string _name;
     do
     {
-        std::cout << "\n\n\t::INSERT NICKNAME (10 Chars max)::" << std::endl;
-        std::cin >> _name;
+        cout << "\n\n\t::INSERT NICKNAME (" << CHAR_MAX << " Chars max)::" << endl;
+        cin >> _name;
         system("cls");
     } while (_name.size() > CHAR_MAX);
 
-        
-    //////
-
-
-    while (isPlaying) {
+    while (!gameManager->GetGameEnded()) {
         Sleep(FRAME_TIME);
 
         for (int i = 0; i < objects.size(); i++) {
             objects[i]->Update();
         }
         Render();
-
-        // Work In Progress
-        if (gameManager->GetGameEnded()) {
-            cout << "\n\n\n\n\t\tGAME OVER\n" << endl << endl;
-            cout << endl << "\t\t" << gameManager->ShowGameOverMsg();
-            WaitForSpaceToContinue();
-
-            isPlaying = false;
-        }
-
     }
 
-    system("cls");
-    std::cout << "\n\n\tSAVING..." << std::endl;
-    std::cout << "Press Space to continue...";
+    // Round Feedback
+    cout << "\n\n\n\n\tGAME OVER" << endl;
+    cout << endl << "Press Space to continue..." << endl;
     WaitForSpaceToContinue();
-    system("cls");
+    cout << endl << gameManager->ShowGameOverMsg() << endl;
 
     // BINARIO KEEP
+    BinSave BINSAVE;
     BINSAVE.username = _name;
     BINSAVE.points = gameManager->GetPoints();
     
-    FileManager::BinSaveSys(BINSAVE);
-    std::cout << "Press Space to continue...";
+    bool scoreSaved = FileManager::BinSaveSys(BINSAVE);
+    cout << endl << (scoreSaved ? "Score correctly saved!" : "There was an error while saving the score!") << endl;
+    cout << endl << "Press Space to continue..." << endl;
     WaitForSpaceToContinue();
 
     RunEnded = true;
     CleanCanvas(); // RESETS THE GAME
 
     nextScene = Scene::RANKING;
-    system("cls");
 }
 
 // Constructor
