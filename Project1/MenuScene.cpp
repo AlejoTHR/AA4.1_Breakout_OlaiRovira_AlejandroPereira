@@ -11,8 +11,7 @@ void MenuScene::Start() {
 
 void MenuScene::Render() {
 	system("cls");
-	if (actualFrame % 2 == 0) menuText = ":::BREAKOUT:::";
-	if (actualFrame % 3 == 0) menuText = "   BREAKOUT";
+
 	cout << endl << menuText << endl << endl;
 	// We print each possible option one by one using the provided "options" list.
 	for (int optionNum = 0; optionNum < options.size(); optionNum++)
@@ -60,7 +59,12 @@ void MenuScene::Update() {
 // Constructor
 MenuScene::MenuScene() {
 	options = { {"PLAY", GAMEPLAY}, {"RANKING", RANKING}, {"CREDITS", CREDITS}, {"EXIT", EXIT}};
-	menuText = "  :BREAKOUT:";
+	menuText = R"( ____    ____    _____    _    _   __   ___    _   _   _____ 
+| __ )  |  _ \  | ____|  / \  | | / /  / _ \  | | | | |_   _|
+|  _ \  | |_) | |  _|   / _ \ | |/ /  | | | | | | | |   | |  
+| |_) | |  _ <  | |___ / ___ \|   <   | |_| | | |_| |   | |  
+|____/  |_| \_\ |_____/_/   \_\_|\_\   \___/   \___/    |_|  
+)";
 	extraText = "  Move with W & S, select with SPACE.";
 }
 
