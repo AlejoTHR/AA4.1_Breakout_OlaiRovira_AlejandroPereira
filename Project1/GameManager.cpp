@@ -45,7 +45,6 @@ std::string GameManager::ShowGameOverMsg()
 void GameManager::BrickDestroyed()
 {
 	brickCounter--;
-	std::cout << "X";
 	if (brickCounter <= 0)
 	{
 		youWin = true;

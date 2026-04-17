@@ -8,12 +8,12 @@
 
 void GameplayScene::CreateWalls(){
     for (int i = 0; i < MAP_SIZE; i++) {
-        objects.push_back(new Wall(Vector2(i, 0), YELLOW, false));
-        objects.push_back(new Wall(Vector2(i, MAP_SIZE - 1), YELLOW, true));
+        objects.push_back(new Wall(Vector2(i, 0), YELLOW));
+        objects.push_back(new Wall(Vector2(i, MAP_SIZE - 1), YELLOW));
 
         if (i > 0 && i < MAP_SIZE - 1) {
-            objects.push_back(new Wall(Vector2(0, i), YELLOW, false));
-            objects.push_back(new Wall(Vector2(MAP_SIZE - 1, i), YELLOW, false));
+            objects.push_back(new Wall(Vector2(0, i), YELLOW));
+            objects.push_back(new Wall(Vector2(MAP_SIZE - 1, i), YELLOW));
         }
     }
 }
