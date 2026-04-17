@@ -30,7 +30,11 @@ void RankingScene::Update() {
 
 // Constructor
 RankingScene::RankingScene() {
-	menuText = "\n\t::RANKINGS::";
+	menuText = R"( ____         _        _     _      _    __      _____
+|  _ \       / \      | \   | |    | |  / /    / ____|
+| |_) |     / _ \     |  \  | |    | | / /    | (___
+|  _ <     / ___ \    |   \ | |    | |< <      \___ \
+|_| \_\   /_/   \_\   |    \| |    |_| \_\     ____) |)";
 	extraText = "Press Space To Continue...";
 	nextScene = Scene::MENU;
 }
